@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.0'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id "org.asciidoctor.jvm.convert" version "3.3.2"		// REST Docs
 }
 
 group = 'com.skuce'
@@ -17,6 +18,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	asciidoctorExt	// REST Docs
 }
 
 repositories {
@@ -27,6 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'	// REST Docs
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'	// REST Docs
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -35,6 +39,24 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+ext {	// REST Docs
+	snippetsDir = file('build/generated-snippets')
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+	outputs.dir snippetsDir		// REST Docs
+}
+
+asciidoctor {	// REST Docs
+	inputs.dir snippetsDir
+	configurations 'asciidoctorExt'
+	dependsOn test
+}
+
+bootJar {	// REST Docs
+	dependsOn asciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		into 'static/docs'
+	}
 }
