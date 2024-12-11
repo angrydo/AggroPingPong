@@ -34,7 +34,7 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(CommonResponse.success(responseDto));
     }
 
-    @GetMapping("/api/v1/post/search")
+    @PostMapping("/api/v1/post/search")
     public ResponseEntity<CommonResponse<?>> searchPosts(@RequestBody Map<String, Object> params) {
         List<PostSimpleResponseDto> responseDto = postReadService.searchBy(params);
         return ResponseEntity.status(HttpStatus.OK).body(CommonResponse.success(responseDto));
