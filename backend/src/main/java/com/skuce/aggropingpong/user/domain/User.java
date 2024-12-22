@@ -1,5 +1,6 @@
 package com.skuce.aggropingpong.user.domain;
 
+import com.skuce.aggropingpong.user.dto.UserUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,38 +15,31 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     //Role타입 import jakarta.persistence.*;-> 머임이거?
     @Enumerated(EnumType.STRING)
     private Role role;
-    @Column
     private String gender;
-    @Column
     private String name;
-    @Column
     private String email;
-    @Column
     private String nickname;
-    @Column
     private String username;
-    @Column
     private String password;
     //timestamp쓸줄모르겠음
     //<----생년월일
     //<----생성일자
     //<----수정일자
-
-    @Column
     private String region;
-    @Column
     private String tier;
-    @Column
     private String orgType;
-    @Column
     private String orgSubType;
-    @Column
     private String orgTeamname;
 
-
-
+    public User update(UserUpdateRequestDto requestDto) {
+        this.name = requestDto.getName();
+        this.email = requestDto.getEmail();
+        this.nickname = requestDto.getNickname();
+        this.username = requestDto.getUsername();
+        this.password = requestDto.getPassword();
+        return this;
+    }
 }
