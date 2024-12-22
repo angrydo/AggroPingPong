@@ -1,14 +1,11 @@
 package com.skuce.aggropingpong.user.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import com.skuce.aggropingpong.user.domain.User;
+import lombok.*;
 import javax.management.relation.Role;
 
-@Getter
-@Setter
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserRequestDto {
@@ -19,12 +16,16 @@ public class UserRequestDto {
     private String nickname;
     private String username;
     private String password;
-    //<----생년월일
-    //<----생성일자
-    //<----수정일자
-    private String region;
-    private String tier;
-    private String orgType;
-    private String orgSubType;
-    private String orgTeamname;
+
+    public User toEntity() {
+        return User.builder()
+                .role(this.role)
+                .gender(this.gender)
+                .name(this.name)
+                .email(this.email)
+                .nickname(this.nickname)
+                .username(this.username)
+                .password(this.password)
+                .build();
+    }
 }
