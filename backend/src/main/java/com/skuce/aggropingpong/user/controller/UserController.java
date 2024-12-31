@@ -36,4 +36,5 @@ import org.springframework.web.bind.annotation.*;
         UserResponseDto responseDto = userWriteService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(CommonResponse.success(responseDto));
     }
+
 }
