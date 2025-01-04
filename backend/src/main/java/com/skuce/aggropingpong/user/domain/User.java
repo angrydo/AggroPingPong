@@ -3,8 +3,11 @@ package com.skuce.aggropingpong.user.domain;
 import com.skuce.aggropingpong.user.dto.UserUpdateRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.management.relation.Role;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -15,7 +18,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //Role타입 import jakarta.persistence.*;-> 머임이거?
     @Enumerated(EnumType.STRING)
     private Role role;
     private String gender;
@@ -24,10 +26,11 @@ public class User {
     private String nickname;
     private String username;
     private String password;
-    //timestamp쓸줄모르겠음
-    //<----생년월일
-    //<----생성일자
-    //<----수정일자
+    private LocalDateTime birthday;
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
     private String region;
     private String tier;
     private String orgType;
