@@ -1,13 +1,13 @@
 package com.skuce.aggropingpong.user.service;
 
 import com.skuce.aggropingpong.user.repository.UserRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class UserReadService {
     private final UserRepository userRepository;
 }
