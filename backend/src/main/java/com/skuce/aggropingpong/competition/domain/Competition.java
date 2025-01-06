@@ -23,7 +23,6 @@ public class Competition {
     private String name;
     @Enumerated(EnumType.STRING)
     private Type type;
-
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private LocalDateTime applyStartDate;
