@@ -33,7 +33,7 @@ public class CompetitionController {
 
     @GetMapping("api/v1/competition/all/page")
     public ResponseEntity<CommonResponse<?>> getCompetitionPage(
-            @PageableDefault(page = 0, size = 0) Pageable pageable) {
+            @PageableDefault(page = 0, size = 10) Pageable pageable) {
         Page<CompetitionDetailResponseDto> responseDto = competitionReadService.findAllPage(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(CommonResponse.success(responseDto));
     }
