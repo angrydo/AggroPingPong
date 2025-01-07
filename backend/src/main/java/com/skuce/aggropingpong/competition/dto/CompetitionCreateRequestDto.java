@@ -1,7 +1,7 @@
 package com.skuce.aggropingpong.competition.dto;
 
 import com.skuce.aggropingpong.competition.domain.Competition;
-import com.skuce.aggropingpong.competition.domain.enums.Type;
+import com.skuce.aggropingpong.competition.domain.Type;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 public class CompetitionCreateRequestDto {
     private String name;
     private Type type;
-
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private LocalDateTime applyStartDate;
