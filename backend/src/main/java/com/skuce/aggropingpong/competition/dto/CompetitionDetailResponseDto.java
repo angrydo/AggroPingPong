@@ -19,8 +19,8 @@ public class CompetitionDetailResponseDto {
     private LocalDateTime endDate;
     private LocalDateTime applyStartDate;
     private LocalDateTime applyEndDate;
-    private LocalDateTime createDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     public CompetitionDetailResponseDto(Competition entity) {
         this.id = entity.getId();
@@ -29,7 +29,7 @@ public class CompetitionDetailResponseDto {
         this.endDate = entity.getEndDate();
         this.applyStartDate = entity.getApplyStartDate();
         this.applyEndDate = entity.getApplyEndDate();
-        this.createDate = entity.getCreateDate();
-        this.updateDate = entity.getUpdateDate();
+        this.createdDate = entity.getCreatedDate();
+        this.updatedDate = entity.getUpdatedDate();
     }
 }
